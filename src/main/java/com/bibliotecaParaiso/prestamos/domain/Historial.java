@@ -7,6 +7,21 @@ public class Historial {
 	public Historial() {
 	}
 
+	public Historial(int codigo, int codigoUsuario, int codigoLibro, String tipo, String fechaTransaccion,
+			String tituloLibro, String fechaPrestamo, String fechaLimite, String fechaDevolucion) {
+		this.codigo = codigo;
+		this.codigoUsuario = codigoUsuario;
+		this.codigoLibro = codigoLibro;
+		this.tipo = tipo;
+		this.fechaTransaccion = fechaTransaccion;
+		this.tituloLibro = tituloLibro;
+		this.fechaPrestamo = fechaPrestamo;
+		this.fechaLimite = fechaLimite;
+		this.fechaDevolucion = fechaDevolucion;
+	}
+
+
+
 	public int getCodigo() {
 		return codigo;
 	}
