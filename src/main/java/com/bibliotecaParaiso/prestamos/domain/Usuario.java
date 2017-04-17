@@ -10,6 +10,10 @@ public class Usuario {
 	public Usuario(){
 		
 	}
+	
+	public Usuario(String cedula){
+		this.cedula = cedula;
+	}
 
 	public int getCodigoUsuario() {
 		return codigoUsuario;

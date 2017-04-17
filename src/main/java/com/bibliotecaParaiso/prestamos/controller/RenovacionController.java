@@ -8,16 +8,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.bibliotecaParaiso.prestamos.business.PrestamoService;
 
 @Controller
-public class PrestamoController {
-	@Autowired
-	private PrestamoService prestamoService;
+public class RenovacionController {
 	
-	@RequestMapping("/prestamo")
+	@RequestMapping("/renovacion")
 	public String iniciar(Model model){
-		model.addAttribute("prestamo", prestamoService.solicitarPrestamo());
-		model.addAttribute("usuarios", prestamoService.listaUsuarios());
-		model.addAttribute("libros", prestamoService.listaLibros());
 		
-		return "prestamo";
+		return "renovacion";
 	}
 }

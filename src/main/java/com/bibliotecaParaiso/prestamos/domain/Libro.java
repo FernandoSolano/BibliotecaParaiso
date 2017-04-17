@@ -14,7 +14,11 @@ public class Libro {
 		publicador = new Publicador();
 		categorias = new LinkedList<>();
 	}
-
+	
+	public Libro(String titulo) {
+		this.titulo = titulo;
+	}
+	
 	public int getCodigo() {
 		return codigo;
 	}

@@ -15,12 +15,16 @@
 					<div class="form-group">
 						<label for="sel1">Seleccione una usuario</label>
 						<select class="form-control" id="sel1">
-							<option>1</option>
+							<option th:each="entry,status : ${usuarios}">
+								<span th:text="${entry.cedula}"></span>
+							</option>
 						</select>
 						<br>
-						<label for="sel2">Mutiple select list (hold shift to select more than one):</label>
-						<select multiple class="form-control" id="sel2">
-							<option>1</option>
+						<label for="sel2">Seleccione un libro</label>
+						<select class="form-control" id="sel2">
+							<option th:each="entry,status : ${libros}">
+								<span th:text="${entry.titulo}"></span>
+							</option>
 						</select>
 					</div>
 				</form>
