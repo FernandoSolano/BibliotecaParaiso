@@ -12,6 +12,23 @@
 			<h1>Devoluci&oacute;n</h1>
 			<div class="jumbotron">
 				
+				<form method="post" th:action="@{/devolucion}" th:object="${devolucionForm}">
+					<div class="form-group">
+						
+						<label for="sel2">Seleccione el libro que desea devolver</label>
+						<select class="form-control" id="sel2" th:field="*{prestado}">
+							<option th:each="entry: ${prestados}" th:value="${}" th:text="${}">
+							</option>
+						</select>
+					</div>
+					
+					<button type="submit" class="btn btn-warning">Devolver</button>
+				</form>
+				
+				<br/><br/>
+				
+				<div> <p id="mensaje_devolucion" th:text="${mensaje}"></p></div>
+				
 			</div>
 			
 			<button id="btnHome" type="button" class="btn btn-success">Regresar</button>

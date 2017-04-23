@@ -21,7 +21,7 @@
 						<br>
 						<label for="sel2">Seleccione un libro</label>
 						<select class="form-control" id="sel2" th:field="*{codigoLibro}">
-							<option th:each="entry: ${libros}" th:value="${entry.codigo}" th:text="${entry.titulo}">
+							<option th:each="entry: ${libros}" th:value="${entry.codigo}" th:text="${entry.titulo} Persona= ${entry.nombre} Fecha= ${entry.fecha_prestamo}">
 							</option>
 						</select>
 					</div>
