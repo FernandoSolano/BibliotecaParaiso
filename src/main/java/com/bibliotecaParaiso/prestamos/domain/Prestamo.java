@@ -11,6 +11,7 @@ public class Prestamo {
 	public Prestamo(){
 		this.usuario = new Usuario();
 		this.libro = new Libro();
+		this.codigo = 0;
 	}
 
 	public int getCodigo() {

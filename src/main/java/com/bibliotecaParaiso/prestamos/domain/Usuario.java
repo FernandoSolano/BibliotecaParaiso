@@ -11,7 +11,8 @@ public class Usuario {
 		
 	}
 	
-	public Usuario(String cedula){
+	public Usuario(int codigoUsuario, String cedula){
+		this.codigoUsuario = codigoUsuario;
 		this.cedula = cedula;
 	}
 

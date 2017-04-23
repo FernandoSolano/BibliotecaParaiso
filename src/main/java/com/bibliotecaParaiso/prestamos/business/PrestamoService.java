@@ -1,5 +1,6 @@
 package com.bibliotecaParaiso.prestamos.business;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,9 +15,14 @@ import com.bibliotecaParaiso.prestamos.domain.Usuario;
 
 @Service
 public class PrestamoService {
-	
+
 	@Autowired
 	private PrestamoDao prestamoDao;
+	
+	public PrestamoService(PrestamoDao prestamoDao) {
+		super();
+		this.prestamoDao = prestamoDao;
+	}
 	
 	public boolean solicitarPrestamo(){
 		return prestamoDao.solicitarPrestamo();
@@ -28,6 +34,10 @@ public class PrestamoService {
 	
 	public List<Libro> listaLibros(){
 		return prestamoDao.listaLibros();
+	}
+	
+	public Prestamo insertarPrestamo(Prestamo prestamo) throws SQLException{
+		return prestamoDao.insertarPrestamo(prestamo);
 	}
 	
 }

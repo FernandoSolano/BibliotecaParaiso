@@ -15,8 +15,12 @@ public class Libro {
 		categorias = new LinkedList<>();
 	}
 	
-	public Libro(String titulo) {
+	public Libro(int codigo, String titulo) {
+		this.codigo = codigo;
 		this.titulo = titulo;
+		autores = new LinkedList<>();
+		publicador = new Publicador();
+		categorias = new LinkedList<>();
 	}
 	
 	public int getCodigo() {
