@@ -24,9 +24,20 @@
 							<option th:each="entry: ${libros}" th:value="${entry.codigo}" th:text="${entry.titulo}">
 							</option>
 						</select>
+						<br>
+						<button type="submit" class="btn btn-warning">Solicitar</button>
+						<h2>Libros recomendados: </h2>
+						<table class="table table-striped  table-hover">
+							<tr>
+								<th>Código</th>
+								<th>Título</th>
+							</tr>
+							<tr th:each="entry,status : ${librosRecomendados}">
+								<td><span th:text="${entry.codigo}"></span></td>
+								<td><span th:text="${entry.titulo}"></span></td>
+							</tr>
+						</table>
 					</div>
-					
-					<button type="submit" class="btn btn-warning">Solicitar</button>
 				</form>
 				
 				<br/><br/>

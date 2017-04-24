@@ -26,6 +26,7 @@ public class PrestamoDao {
 	private SimpleJdbcCall simpleJdbcCallPrestamo;
 	private SimpleJdbcCall simpleJdbcCallDevolucion;
 	private SimpleJdbcCall simpleJdbcCallRenovarPrestamo;
+	private SimpleJdbcCall simpleJdbcCallLibrosRecomendados;
 
 	@Autowired
 	public void setDataSource(DataSource dataSource) {
@@ -33,10 +34,7 @@ public class PrestamoDao {
 		this.simpleJdbcCallPrestamo = new SimpleJdbcCall(dataSource).withProcedureName("InsertarPrestamo");
 		this.simpleJdbcCallDevolucion = new SimpleJdbcCall(dataSource).withProcedureName("eliminarPrestamo");
 		this.simpleJdbcCallRenovarPrestamo = new SimpleJdbcCall(dataSource).withProcedureName("Renovacion");
-	}
-
-	public boolean solicitarPrestamo() {
-		return false;
+		this.simpleJdbcCallLibrosRecomendados = new SimpleJdbcCall(dataSource).withProcedureName("LibrosRecomendados");		
 	}
 
 	public List<Usuario> listaUsuarios() {
@@ -115,5 +113,18 @@ public class PrestamoDao {
 		} catch (Error e) {
 			return false;
 		}
+	}
+	
+	public List<Libro> getRecomendaciones(int codigoUsuario){
+		SqlParameterSource procedimientoLibrosRecomendados = new MapSqlParameterSource().addValue("cod_usuario", codigoUsuario);
+		simpleJdbcCallLibrosRecomendados.execute(procedimientoLibrosRecomendados);
+		
+		List<Libro> libros = new ArrayList<>();
+		String selectSql = "execute muestraLibrosRecomendados";
+		jdbcTemplate
+		.query(selectSql, new Object[] {},
+				(rs, row) -> new Libro(rs.getInt("codigo"), rs.getString("titulo")))
+		.forEach(entry -> libros.add(entry));
+		return libros;
 	}
 }

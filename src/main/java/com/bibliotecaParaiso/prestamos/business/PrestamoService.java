@@ -24,10 +24,6 @@ public class PrestamoService {
 		this.prestamoDao = prestamoDao;
 	}
 	
-	public boolean solicitarPrestamo(){
-		return prestamoDao.solicitarPrestamo();
-	}
-	
 	public List<Usuario> listaUsuarios(){
 		return prestamoDao.listaUsuarios();
 	}
@@ -51,4 +47,7 @@ public class PrestamoService {
 		return prestamoDao.renovacion(codigoPrestamo);
 	}
 	
+	public List<Libro> getRecomendaciones(int codigoUsuario){
+		return prestamoDao.getRecomendaciones(codigoUsuario);
+	}
 }

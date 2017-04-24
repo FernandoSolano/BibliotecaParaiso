@@ -47,6 +47,7 @@ public class PrestamoController {
 				model.addAttribute("mensaje", "No se pudo crear el prestamo");
 			}else{
 				model.addAttribute("mensaje", "Prestamo creado con exito");
+				model.addAttribute("librosRecomendados", prestamoService.getRecomendaciones(prestamoForm.getCodigoUsuario()));
 			}
 			
 		} catch (SQLException e) {
