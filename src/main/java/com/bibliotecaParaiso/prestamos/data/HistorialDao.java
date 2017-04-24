@@ -35,13 +35,16 @@ public class HistorialDao {
 	}
 	
 	public List<Integer> numRegistros(){
-		int numRegistros = 0;
+		double numRegistros = 0;
 		int num = 1;
 		String selectSql = "execute numRegistros";
 		List<Integer> listaNum = new ArrayList<>();
 		numRegistros = jdbcTemplate.queryForObject(selectSql, Integer.class);
-		double numReg = numRegistros/5;
-		num = (int) Math.ceil(numReg);
+		
+		num = (int) Math.ceil(numRegistros/5);
+		
+		System.out.println("numregistros= "+numRegistros+", num= "+num);
+		
 		
 		for(int i=1; i<=num; i++){
 			listaNum.add(i);
