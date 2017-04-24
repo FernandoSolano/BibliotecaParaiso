@@ -18,8 +18,6 @@ public class DevolucionController {
 	@Autowired
 	private PrestamoService prestamoService;
 	
-	
-	
 	@RequestMapping("/devolucion")
 	public String iniciar(Model model, DevolucionForm devolucionForm){
 		model.addAttribute("prestamos", prestamoService.listaPrestamos());
@@ -39,9 +37,8 @@ public class DevolucionController {
 			model.addAttribute("mensaje", "Se ha realizado la devolución correctamente");
 		}else{
 			model.addAttribute("mensaje", "No se pudo devolver el libro");
-			return "error";
 		}
-		
+		model.addAttribute("prestamos", prestamoService.listaPrestamos());
 		return "devolucion";
 	}
 	

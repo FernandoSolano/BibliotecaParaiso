@@ -60,7 +60,7 @@ public class PrestamoController {
 			model.addAttribute("mensaje", "No se pudo crear el prestamo");
 			return "error";
 		}
-		
+		model.addAttribute("libros", prestamoService.listaLibros());
 		return "prestamo";
 	}
 }
