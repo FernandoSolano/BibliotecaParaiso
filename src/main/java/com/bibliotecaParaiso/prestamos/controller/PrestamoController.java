@@ -2,9 +2,12 @@ package com.bibliotecaParaiso.prestamos.controller;
 
 import java.sql.SQLException;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -54,15 +57,10 @@ public class PrestamoController {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			model.addAttribute("mensaje", "No se pudo crear el prestamo CATCH");
+			model.addAttribute("mensaje", "No se pudo crear el prestamo");
 			return "error";
 		}
 		
 		return "prestamo";
-	}
-	
-	@RequestMapping(value = "/error", method=RequestMethod.POST)
-	public String error(Model model){
-		return "error";
 	}
 }
