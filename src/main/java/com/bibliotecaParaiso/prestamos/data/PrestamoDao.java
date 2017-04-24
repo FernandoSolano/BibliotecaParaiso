@@ -25,12 +25,14 @@ public class PrestamoDao {
 	private JdbcTemplate jdbcTemplate;
 	private SimpleJdbcCall simpleJdbcCallPrestamo;
 	private SimpleJdbcCall simpleJdbcCallDevolucion;
+	private SimpleJdbcCall simpleJdbcCallRenovarPrestamo;
 
 	@Autowired
 	public void setDataSource(DataSource dataSource) {
 		this.jdbcTemplate = new JdbcTemplate(dataSource);
 		this.simpleJdbcCallPrestamo = new SimpleJdbcCall(dataSource).withProcedureName("InsertarPrestamo");
 		this.simpleJdbcCallDevolucion = new SimpleJdbcCall(dataSource).withProcedureName("eliminarPrestamo");
+		this.simpleJdbcCallRenovarPrestamo = new SimpleJdbcCall(dataSource).withProcedureName("Renovacion");
 	}
 
 	public boolean solicitarPrestamo() {
@@ -102,5 +104,16 @@ public class PrestamoDao {
 			return false;
 		}
 
+	}
+	
+	@Transactional
+	public boolean renovacion(int codigoPrestamo) {
+		try{
+			SqlParameterSource procedimientoRenovacion = new MapSqlParameterSource().addValue("codPrestamo", codigoPrestamo);
+			simpleJdbcCallRenovarPrestamo.execute(procedimientoRenovacion);
+			return true;
+		} catch (Error e) {
+			return false;
+		}
 	}
 }

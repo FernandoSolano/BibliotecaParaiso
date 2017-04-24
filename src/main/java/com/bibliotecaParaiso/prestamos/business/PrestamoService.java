@@ -47,4 +47,8 @@ public class PrestamoService {
 		return prestamoDao.devolucion(codigo);
 	}
 	
+	public boolean renovacion(int codigoPrestamo) {
+		return prestamoDao.renovacion(codigoPrestamo);
+	}
+	
 }
