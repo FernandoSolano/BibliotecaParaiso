@@ -20,11 +20,10 @@ public class HistorialDao {
 		this.jdbcTemplate = new JdbcTemplate(dataSource);
 	}
 
-	public List<Historial> showAllHistory() {
+	public List<Historial> showAllHistory(int id) {
 		List<Historial> historial = new ArrayList<>();
-		//String selectSql = "select codigo, tipo, fecha_transaccion," + " codigo_persona, codigo_libro, titulo_libro,"
-		//		+ " fecha_prestamo, fecha_limite, fecha_devolucion" + " from Historial_Prestamos";
-		String selectSql = "execute MostrarHistorialPrestamos";
+		
+		String selectSql = "execute MostrarHistorialPrestamos "+id+", "+5;
 		jdbcTemplate
 				.query(selectSql, new Object[] {},
 						(rs, row) -> new Historial(rs.getInt("codigo"), rs.getInt("codigo_persona"),
@@ -33,5 +32,21 @@ public class HistorialDao {
 								rs.getDate("fecha_limite") + "", rs.getDate("fecha_devolucion") + ""))
 				.forEach(entry -> historial.add(entry));
 		return historial;
+	}
+	
+	public List<Integer> numRegistros(){
+		int numRegistros = 0;
+		int num = 1;
+		String selectSql = "execute numRegistros";
+		List<Integer> listaNum = new ArrayList<>();
+		numRegistros = jdbcTemplate.queryForObject(selectSql, Integer.class);
+		double numReg = numRegistros/5;
+		num = (int) Math.ceil(numReg);
+		
+		for(int i=1; i<=num; i++){
+			listaNum.add(i);
+		}
+		
+		return listaNum;
 	}
 }

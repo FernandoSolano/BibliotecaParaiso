@@ -14,8 +14,12 @@ public class HistorialService {
 	@Autowired
 	private HistorialDao historialDao;
 	
-	public List<Historial> showAllHistory(){
-		return historialDao.showAllHistory();
+	public List<Historial> showAllHistory(int id){
+		
+		return historialDao.showAllHistory(id);
 	}
 	
+	public List<Integer> numRegistros(){
+		return historialDao.numRegistros();
+	}
 }
