@@ -41,7 +41,7 @@ public class DevolucionController {
 			model.addAttribute("mensaje", "No se pudo devolver el libro");
 			return "error";
 		}
-		
+		model.addAttribute("prestamos", prestamoService.listaPrestamos());
 		return "devolucion";
 	}
 	

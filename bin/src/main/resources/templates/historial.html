@@ -3,8 +3,8 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Historial de préstamos</title>
-	<link rel="stylesheet" type="text/css" media="all" href="css/bootstrap.min.css"></link>
-	<link rel="stylesheet" type="text/css" media="all" href="css/style.css"></link>
+	<link rel="stylesheet" href="/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
 	<div class="container">
@@ -33,12 +33,21 @@
 				<td><span th:text="${entry.fechaDevolucion}"></span></td>
 			</tr>
 		</table>
-		
+		<br/>
+		<div class="center">
+			<ul class="pagination pagination-lg">
+			    <li th:each="entry,status : ${numRegistros}">
+			    	<a th:href="@{'/historial/' + ${entry}}" th:text="${entry}"></a>
+			    </li>
+			    
+			</ul>
+		</div>
+		  
 		<button id="btnHome" type="button" class="btn btn-success">Regresar</button>
 	</div>
 	
-	<script src="js/jquery-3.2.1.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/main.js"></script>
+	<script src="/js/jquery-3.2.1.min.js"></script>
+	<script src="/js/bootstrap.min.js"></script>
+	<script src="/js/main.js"></script>
 </body>
 </html>
