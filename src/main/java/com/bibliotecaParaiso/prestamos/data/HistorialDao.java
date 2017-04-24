@@ -43,8 +43,6 @@ public class HistorialDao {
 		
 		num = (int) Math.ceil(numRegistros/5);
 		
-		System.out.println("numregistros= "+numRegistros+", num= "+num);
-		
 		
 		for(int i=1; i<=num; i++){
 			listaNum.add(i);
