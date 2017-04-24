@@ -11,7 +11,17 @@
 
 			<h1>Renovaci&oacute;n</h1>
 			<div class="jumbotron">
-				
+				<form method="post" th:action="@{/renovacion}" th:object="${renovacionForm}">
+					<div class="form-group">
+						<label for="prestamosActivos">Seleccione el libro que desea renovar</label>
+						<select class="form-control" id="prestamosActivos" th:field="*{codigoPrestamo}">
+							<option th:each="entry: ${prestamos}" th:value="${entry.codigo}" th:text="${entry.libro.titulo}"></option>
+						</select>
+					</div>
+					
+					<button type="submit" class="btn btn-warning">Renovar</button>
+				</form>
+				<div> <p id="mensaje_renovacion" th:text="${mensaje}"></p></div>
 			</div>
 			
 			<button id="btnHome" type="button" class="btn btn-success">Regresar</button>

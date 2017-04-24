@@ -57,7 +57,7 @@ public class PrestamoController {
 			model.addAttribute("mensaje", "No se pudo crear el prestamo CATCH");
 			return "error";
 		}
-		
+		model.addAttribute("libros", prestamoService.listaLibros());
 		return "prestamo";
 	}
 	
