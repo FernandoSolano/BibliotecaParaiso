@@ -16,8 +16,8 @@
 					<div class="form-group">
 						
 						<label for="sel2">Seleccione el libro que desea devolver</label>
-						<select class="form-control" id="sel2" th:field="*{prestado}">
-							<option th:each="entry: ${prestados}" th:value="${}" th:text="${}">
+						<select class="form-control" id="sel2" th:field="*{codigo}">
+							<option th:each="entry: ${prestamos}" th:value="${entry.codigo}" th:text="${entry.libro.titulo}">
 							</option>
 						</select>
 					</div>

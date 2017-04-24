@@ -36,8 +36,15 @@ public class PrestamoService {
 		return prestamoDao.listaLibros();
 	}
 	
+	public List<Prestamo> listaPrestamos() {
+		return prestamoDao.listaPrestamos();
+	}
+	
 	public Prestamo insertarPrestamo(Prestamo prestamo) throws SQLException{
 		return prestamoDao.insertarPrestamo(prestamo);
+	}
+	public boolean devolucion(int codigo) {
+		return prestamoDao.devolucion(codigo);
 	}
 	
 }

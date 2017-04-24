@@ -1,5 +1,7 @@
 package com.bibliotecaParaiso.prestamos.domain;
 
+import java.sql.Date;
+
 public class Prestamo {
 
 	private int codigo;
@@ -12,6 +14,15 @@ public class Prestamo {
 		this.usuario = new Usuario();
 		this.libro = new Libro();
 		this.codigo = 0;
+	}
+
+	public Prestamo(int codigo, String fecha_prestamo, String nombre, String titulo) {
+		this.usuario = new Usuario();
+		this.libro = new Libro();
+		this.codigo = codigo;
+		this.fechaPrestamo = fecha_prestamo;
+		this.usuario.setNombre(nombre);
+		this.libro.setTitulo(titulo);
 	}
 
 	public int getCodigo() {
