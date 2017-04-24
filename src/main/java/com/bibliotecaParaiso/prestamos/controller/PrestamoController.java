@@ -45,6 +45,7 @@ public class PrestamoController {
 			
 			if(prestamo.getCodigo() == 0){
 				model.addAttribute("mensaje", "No se pudo crear el prestamo");
+				return "error";
 			}else{
 				model.addAttribute("mensaje", "Prestamo creado con exito");
 				model.addAttribute("librosRecomendados", prestamoService.getRecomendaciones(prestamoForm.getCodigoUsuario()));
@@ -54,10 +55,14 @@ public class PrestamoController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			model.addAttribute("mensaje", "No se pudo crear el prestamo CATCH");
+			return "error";
 		}
 		
 		return "prestamo";
 	}
 	
-	
+	@RequestMapping(value = "/error", method=RequestMethod.POST)
+	public String error(Model model){
+		return "error";
+	}
 }

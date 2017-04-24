@@ -33,6 +33,7 @@ public class RenovacionController {
 			model.addAttribute("mensaje", "Se ha realizado la renovación correctamente");
 		}else{
 			model.addAttribute("mensaje", "No se pudo renovar el préstamo");
+			return "error";
 		}
 		
 		return "renovacion";
