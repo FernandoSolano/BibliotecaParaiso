@@ -23,6 +23,8 @@ public class HistorialDao {
 	public List<Historial> showAllHistory(int id) {
 		List<Historial> historial = new ArrayList<>();
 		
+		System.out.println(id + ": id");
+		
 		String selectSql = "execute MostrarHistorialPrestamos "+id+", "+5;
 		jdbcTemplate
 				.query(selectSql, new Object[] {},
