@@ -22,11 +22,15 @@ import com.bibliotecaParaiso.prestamos.domain.Prestamo;
 public class CategoriaDao {
 	private JdbcTemplate jdbcTemplate;
 	private SimpleJdbcCall simpleJdbcCallCategoriaInsertar;
+	private SimpleJdbcCall simpleJdbcCallCategoriaActualizar;
+	private SimpleJdbcCall simpleJdbcCallCategoriaBorrar;
 	
 	@Autowired
 	public void setDataSource(DataSource dataSource) {
 		this.jdbcTemplate = new JdbcTemplate(dataSource);
 		this.simpleJdbcCallCategoriaInsertar = new SimpleJdbcCall(dataSource).withProcedureName("sp_categoria_insert");
+		this.simpleJdbcCallCategoriaActualizar = new SimpleJdbcCall(dataSource).withProcedureName("sp_categoria_update");
+		this.simpleJdbcCallCategoriaBorrar = new SimpleJdbcCall(dataSource).withProcedureName("sp_categoria_delete");
 	}
 	
 	@Transactional
@@ -51,6 +55,40 @@ public class CategoriaDao {
 		
 		
 		return categorias;
+	}
+	
+	@Transactional
+	public boolean actualizar(int codigo, String nombre) {
+		try {
+			SqlParameterSource parameterSource = new MapSqlParameterSource()
+					.addValue("codigo", codigo)
+					.addValue("nombre", nombre);
+		
+			Map<String, Object> outParameters = simpleJdbcCallCategoriaActualizar.execute(parameterSource);
+			
+			return true;
+		} catch (Error e) {
+			return false;
+		}
+		
+	}
+	
+	@Transactional
+	public boolean borrar(int codigo) {
+		
+		System.out.println("codigo : "+codigo);
+		
+		try {
+			SqlParameterSource parameterSource = new MapSqlParameterSource()
+					.addValue("codigo", codigo);
+		
+			Map<String, Object> outParameters = simpleJdbcCallCategoriaBorrar.execute(parameterSource);
+			
+			return true;
+		} catch (Error e) {
+			return false;
+		}
+		
 	}
 	
 }

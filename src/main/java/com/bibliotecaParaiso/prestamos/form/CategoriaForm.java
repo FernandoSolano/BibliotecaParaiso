@@ -11,6 +11,12 @@ public class CategoriaForm {
 		this.nombre = "";
 	}
 	
+	public CategoriaForm(int codigo){
+		super();
+		this.codigo = codigo;
+		this.nombre = "";
+	}
+	
 	public CategoriaForm(String nombre){
 		super();
 		this.codigo = 0;

@@ -25,14 +25,33 @@
 				</div>
 			</div>
 			
-			<form method="post" th:action="@{/categoria/insertar}" th:object="${categoriaForm}">
+			
+		<table class="table table-striped  table-hover">
+			<tr>
+				<th>Código</th>
+				<th>Nombre</th>
+			</tr>
+			<tr th:each="entry,status : ${categorias}">
+				<td><span th:text="${entry.codigo}"></span></td>
+				<td><span th:text="${entry.nombre}"></span></td>
+			</tr>
+		</table>
+			<br/>
+			
+			<form method="post" th:action="@{/categoria/actualizar}" th:object="${categoriaForm}">
 				<div class="form-group">
-						<label for="sel1">Ingrese el nombre de la categor&iacute;a que desea insertar</label>
+						<label for="sel1">Ingrese el codigo de la categor&iacute;a que desea actualizar</label>
+						<input type="text" id="sel1" class="form-control" th:field="*{codigo}"/>
+				</div>	
+				
+				<div class="form-group">
+						<label for="sel1">Ingrese el nuevo nombre de la categor&iacute;a</label>
 						<input type="text" id="sel1" class="form-control" th:field="*{nombre}"/>
 				</div>	
 				
-				<button type="submit" class="btn btn-warning">Insertar</button>			
+				<button type="submit" class="btn btn-warning">Actualizar</button>			
 			</form>
+			
 				
 			<br/><br/>
 				
