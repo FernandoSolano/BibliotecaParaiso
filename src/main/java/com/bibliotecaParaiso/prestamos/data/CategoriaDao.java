@@ -10,45 +10,47 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
+import org.springframework.jdbc.core.simple.SimpleJdbcCall;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.bibliotecaParaiso.prestamos.domain.Categoria;
 import com.bibliotecaParaiso.prestamos.domain.Historial;
+import com.bibliotecaParaiso.prestamos.domain.Prestamo;
 
 @Repository
 public class CategoriaDao {
 	private JdbcTemplate jdbcTemplate;
-
+	private SimpleJdbcCall simpleJdbcCallCategoriaInsertar;
+	
 	@Autowired
 	public void setDataSource(DataSource dataSource) {
 		this.jdbcTemplate = new JdbcTemplate(dataSource);
+		this.simpleJdbcCallCategoriaInsertar = new SimpleJdbcCall(dataSource).withProcedureName("sp_categoria_insert");
 	}
 	
-	public int insert(String nombre) {
-		List<Categoria> categorias = new ArrayList<>();
-		
-		String selectSql = "execute sp_categoria_insert "+nombre;
-		jdbcTemplate
-				.query(selectSql, new Object[] {},
-						(rs, row) -> new Categoria(rs.getInt("codigo")))
-				.forEach(entry ->  categorias.add(entry));
-		
-		return categorias.get(0).getCodigo();
-	}
-	
-	
-	/*@Transactional
+	@Transactional
 	public int insert(String nombre) {
 		SqlParameterSource parameterSource = new MapSqlParameterSource()
-				.addValue("codUsuario", prestamo.getUsuario().getCodigoUsuario())
-				.addValue("codLibro", prestamo.getLibro().getCodigo());
+				.addValue("nombre", nombre);
 	
-		Map<String, Object> outParameters = simpleJdbcCallPrestamo.execute(parameterSource);
+		Map<String, Object> outParameters = simpleJdbcCallCategoriaInsertar.execute(parameterSource);
 	
-		prestamo.setCodigo(Integer.parseInt(outParameters.get("codPrestamo").toString()));
+		return Integer.parseInt(outParameters.get("codigo").toString());
+	}
 	
-		return prestamo;
-	}*/
+	public List<Categoria> select() {
+		List<Categoria> categorias = new ArrayList<>();
+
+		String selectSql = "execute sp_categoria_get";
+		
+		jdbcTemplate.query(selectSql, new Object[] {},
+				(rs, row) -> new Categoria(rs.getInt("codigo"),
+						rs.getString("nombre")))
+				.forEach(entry -> categorias.add(entry));
+		
+		
+		return categorias;
+	}
 	
 }
