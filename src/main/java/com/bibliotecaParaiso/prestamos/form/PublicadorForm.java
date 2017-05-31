@@ -55,7 +55,7 @@ public class PublicadorForm {
 	public String getCorreo() {
 		return correo;
 	}
-	public void getCorreo(String correo) {
+	public void setCorreo(String correo) {
 		this.correo = correo;
 	}
 	

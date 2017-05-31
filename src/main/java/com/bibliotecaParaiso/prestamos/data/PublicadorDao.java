@@ -55,7 +55,7 @@ public class PublicadorDao {
 		String selectSql = "execute MuestraPublicadores";
 		
 		jdbcTemplate.query(selectSql, new Object[] {},
-				(rs, row) -> new Publicador(rs.getInt("codPublicador"),
+				(rs, row) -> new Publicador(rs.getInt("codigo"),
 						rs.getString("nombre"),
 						rs.getString("lugar"),
 						rs.getString("correo")))
@@ -70,7 +70,7 @@ public class PublicadorDao {
 	public boolean actualizar(int codigo, String nombre, String lugar, String correo) {
 		try {
 			SqlParameterSource parameterSource = new MapSqlParameterSource()
-					.addValue("codPublicador", codigo)
+					.addValue("codigo", codigo)
 					.addValue("nombre", nombre)
 					.addValue("lugar", lugar)
 					.addValue("correo", correo);
@@ -89,7 +89,7 @@ public class PublicadorDao {
 		
 		try {
 			SqlParameterSource parameterSource = new MapSqlParameterSource()
-					.addValue("codPublicador", codigo);
+					.addValue("codigo", codigo);
 		
 			Map<String, Object> outParameters = simpleJdbcCallPublicadorBorrar.execute(parameterSource);
 			
