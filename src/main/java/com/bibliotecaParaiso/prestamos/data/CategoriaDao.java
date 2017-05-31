@@ -76,11 +76,9 @@ public class CategoriaDao {
 	@Transactional
 	public boolean borrar(int codigo) {
 		
-		System.out.println("codigo : "+codigo);
-		
 		try {
 			SqlParameterSource parameterSource = new MapSqlParameterSource()
-					.addValue("codigo", codigo);
+					.addValue("codigo_categoria", codigo);
 		
 			Map<String, Object> outParameters = simpleJdbcCallCategoriaBorrar.execute(parameterSource);
 			
