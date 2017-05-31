@@ -5,9 +5,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class PublicadorController {
-	@RequestMapping("/categoria")
+	@RequestMapping("/publicador")
 	public String iniciar(){
 		
-		return "categoria";
+		return "publicador";
 	}
 }

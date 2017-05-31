@@ -9,24 +9,25 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.bibliotecaParaiso.prestamos.business.CategoriaService;
 import com.bibliotecaParaiso.prestamos.business.PrestamoService;
+import com.bibliotecaParaiso.prestamos.business.PublicadorService;
 import com.bibliotecaParaiso.prestamos.form.CategoriaForm;
 import com.bibliotecaParaiso.prestamos.form.PrestamoForm;
 
 @Controller
 public class PublicadorVerController {
 	@Autowired
-	private CategoriaService categoriaService;
+	private PublicadorService publicadorService;
 	
-	public PublicadorVerController(CategoriaService categoriaService) {
+	public PublicadorVerController(PublicadorService publicadorService) {
 		super();
-		this.categoriaService = categoriaService;
+		this.publicadorService = publicadorService;
 	}
 	
-	@RequestMapping("/categoria/ver")
+	@RequestMapping("/publicador/ver")
 	public String iniciar(Model model, CategoriaForm categoriaForm){
-		model.addAttribute("categorias", this.categoriaService.select());
+		model.addAttribute("publicadores", this.publicadorService.select());
 		
-		return "categoria_ver";
+		return "publicador_ver";
 	}
 	
 }

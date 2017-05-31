@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="../css/bootstrap.min.css">
+		<link rel="stylesheet" href="../css/style.css">
+		<title>Publicador</title>
+	</head>
+	<body>
+		<div class="container">
+
+			<h1>Publicador</h1>
+			<div class="row">
+				<div class="table-responsive">
+					<table class="table">
+						<tbody>
+							<tr class="active">
+								<td><button id="btnPublicadorInsertar" type="button" class="btn btn-success active">Insertar</button></td>
+								<td><button id="btnPublicadorActualizar" type="button" class="btn btn-primary">Actualizar</button></td>
+								<td><button id="btnPublicadorVer" type="button" class="btn btn-danger">Ver</button></td>
+								<td><button id="btnPublicadorBorrar" type="button" class="btn btn-warning">Borrar</button></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			
+			
+		<table class="table table-striped  table-hover">
+			<tr>
+				<th>Código</th>
+				<th>Nombre</th>
+				<th>Lugar</th>
+				<th>Correo</th>
+			</tr>
+			<tr th:each="entry,status : ${publicadores}">
+				<td><span th:text="${entry.codigo}"></span></td>
+				<td><span th:text="${entry.nombre}"></span></td>
+				<td><span th:text="${entry.lugar}"></span></td>
+				<td><span th:text="${entry.correo}"></span></td>
+			</tr>
+		</table>
+			<br/>
+			
+			<form method="post" th:action="@{/publicador/borrar}" th:object="${publicadorForm}">
+				<div class="form-group">
+						<label for="sel1">Ingrese el codigo del publicador que desea borrar</label>
+						<input type="text" id="sel1" class="form-control" th:field="*{codigo}"/>
+				</div>	
+				
+				<button type="submit" class="btn btn-warning">Borrar</button>			
+			</form>
+			
+				
+			<br/><br/>
+				
+			<div> <p id="mensaje_prestamo" th:text="${mensaje}"></p></div>
+			
+			
+			<button id="btnHome" type="button" class="btn btn-success">Regresar</button>
+		</div>
+	
+		<script src="../js/jquery-3.2.1.min.js"></script>
+		<script src="../js/bootstrap.min.js"></script>
+		<script src="../js/main.js"></script>
+	</body>
+</html>

@@ -9,39 +9,41 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.bibliotecaParaiso.prestamos.business.CategoriaService;
 import com.bibliotecaParaiso.prestamos.business.PrestamoService;
+import com.bibliotecaParaiso.prestamos.business.PublicadorService;
 import com.bibliotecaParaiso.prestamos.form.CategoriaForm;
 import com.bibliotecaParaiso.prestamos.form.PrestamoForm;
+import com.bibliotecaParaiso.prestamos.form.PublicadorForm;
 
 @Controller
 public class PublicadorBorrarController {
 	@Autowired
-	private CategoriaService categoriaService;
+	private PublicadorService publicadorService;
 	
-	public PublicadorBorrarController(CategoriaService categoriaService) {
+	public PublicadorBorrarController(PublicadorService publicadorService) {
 		super();
-		this.categoriaService = categoriaService;
+		this.publicadorService = publicadorService;
 	}
 	
-	@RequestMapping("/categoria/borrar")
-	public String iniciar(Model model, CategoriaForm categoriaForm){
-		model.addAttribute("categorias", this.categoriaService.select());
+	@RequestMapping("/publicador/borrar")
+	public String iniciar(Model model, PublicadorForm publicadorForm){
+		model.addAttribute("publicadores", this.publicadorService.select());
 		
-		return "categoria_borrar";
+		return "publicador_borrar";
 	}
 	
-	@RequestMapping(value = "/categoria/borrar", method=RequestMethod.POST)
-	public String devolucion(Model model, CategoriaForm categoriaForm){
+	@RequestMapping(value = "/publicador/borrar", method=RequestMethod.POST)
+	public String devolucion(Model model, PublicadorForm publicadorForm){
 		
-		int codigo = categoriaForm.getCodigo();
+		int codigo = publicadorForm.getCodigo();
 		
-		boolean flag = categoriaService.borrar(codigo);
+		boolean flag = publicadorService.borrar(codigo);
 		
 		if(flag){
-			model.addAttribute("mensaje", "La categoria se ha borrado correctamente");
+			model.addAttribute("mensaje", "El publicador se ha borrado correctamente");
 		}else{
-			model.addAttribute("mensaje", "No se pudo borrar la categoria");
+			model.addAttribute("mensaje", "No se pudo borrar el publicador");
 		}
 		
-		return "categoria_borrar";
+		return "publicador_borrar";
 	}
 }

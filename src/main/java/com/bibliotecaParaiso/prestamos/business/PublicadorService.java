@@ -12,31 +12,33 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.bibliotecaParaiso.prestamos.data.CategoriaDao;
 import com.bibliotecaParaiso.prestamos.data.HistorialDao;
+import com.bibliotecaParaiso.prestamos.data.PublicadorDao;
 import com.bibliotecaParaiso.prestamos.domain.Categoria;
 import com.bibliotecaParaiso.prestamos.domain.Historial;
+import com.bibliotecaParaiso.prestamos.domain.Publicador;
 
 @Service
 public class PublicadorService {
 	
 	@Autowired
-	private CategoriaDao categoriaDao;
+	private PublicadorDao publicadorDao;
 	
-	public int insert(String nombre) {
-		return this.categoriaDao.insert(nombre);
+	public int insert(String nombre, String lugar, String correo) {
+		return this.publicadorDao.insert(nombre, lugar, correo);
 	}
 	
-	public List<Categoria> select() {
-		return this.categoriaDao.select();
+	public List<Publicador> select() {
+		return this.publicadorDao.select();
 	}
 	
 	@Transactional
-	public boolean actualizar(int codigo, String nombre){
-		return this.categoriaDao.actualizar(codigo, nombre);
+	public boolean actualizar(int codigo, String nombre, String lugar, String correo){
+		return this.publicadorDao.actualizar(codigo, nombre, lugar, correo);
 	}
 	
 	@Transactional
 	public boolean borrar(int codigo) {
-		return this.categoriaDao.borrar(codigo);
+		return this.publicadorDao.borrar(codigo);
 	}
 	
 }

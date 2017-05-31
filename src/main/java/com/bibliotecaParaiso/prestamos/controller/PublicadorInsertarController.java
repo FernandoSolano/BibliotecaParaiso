@@ -9,39 +9,43 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.bibliotecaParaiso.prestamos.business.CategoriaService;
 import com.bibliotecaParaiso.prestamos.business.PrestamoService;
+import com.bibliotecaParaiso.prestamos.business.PublicadorService;
 import com.bibliotecaParaiso.prestamos.form.CategoriaForm;
 import com.bibliotecaParaiso.prestamos.form.PrestamoForm;
+import com.bibliotecaParaiso.prestamos.form.PublicadorForm;
 
 @Controller
 public class PublicadorInsertarController {
 	@Autowired
-	private CategoriaService categoriaService;
+	private PublicadorService publicadorService;
 	
-	public PublicadorInsertarController(CategoriaService categoriaService) {
+	public PublicadorInsertarController(PublicadorService publicadorService) {
 		super();
-		this.categoriaService = categoriaService;
+		this.publicadorService = publicadorService;
 	}
 	
-	@RequestMapping("/categoria/insertar")
-	public String iniciar(Model model, CategoriaForm categoriaForm){
+	@RequestMapping("/publicador/insertar")
+	public String iniciar(Model model, PublicadorForm publicadorForm){
 		
-		return "categoria_insertar";
+		return "publicador_insertar";
 	}
 	
-	@RequestMapping(value = "/categoria/insertar", method=RequestMethod.POST)
-	public String devolucion(Model model, CategoriaForm categoriaForm){
+	@RequestMapping(value = "/publicador/insertar", method=RequestMethod.POST)
+	public String devolucion(Model model, PublicadorForm publicadorForm){
 		
-		String nombre = categoriaForm.getNombre();
+		String nombre = publicadorForm.getNombre();
+		String correo = publicadorForm.getCorreo();
+		String lugar = publicadorForm.getLugar();
 		
-		int codigo = categoriaService.insert(nombre);
+		int codigo = publicadorService.insert(nombre, lugar, correo);
 		
 		if(codigo != -1){
-			model.addAttribute("mensaje", "La categoria se ha  insertado correctamente con el codigo "+ codigo);
+			model.addAttribute("mensaje", "El publicador se ha  insertado correctamente con el codigo "+ codigo);
 		}else{
-			model.addAttribute("mensaje", "No se pudo insertar la categoria");
+			model.addAttribute("mensaje", "No se pudo insertar el publicador");
 		}
 		
-		return "categoria_insertar";
+		return "publicador_insertar";
 	}
 	
 	

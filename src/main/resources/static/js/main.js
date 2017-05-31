@@ -40,6 +40,22 @@ $(document).ready(function(){
 		window.location = '/publicador';
 	});
 	
+		$('#btnPublicadorInsertar').on('click', function(){
+			window.location = '/publicador/insertar';
+		});
+	
+		$('#btnPublicadorActualizar').on('click', function(){
+			window.location = '/publicador/actualizar';
+		});
+		
+		$('#btnPublicadorVer').on('click', function(){
+			window.location = '/publicador/ver';
+		});
+		
+		$('#btnPublicadorBorrar').on('click', function(){
+			window.location = '/publicador/borrar';
+		});
+	
 	$('#btnHome').on('click', function(){
 		window.location = '/';
 	});

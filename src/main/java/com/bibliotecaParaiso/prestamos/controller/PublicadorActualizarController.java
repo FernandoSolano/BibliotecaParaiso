@@ -9,40 +9,44 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.bibliotecaParaiso.prestamos.business.CategoriaService;
 import com.bibliotecaParaiso.prestamos.business.PrestamoService;
+import com.bibliotecaParaiso.prestamos.business.PublicadorService;
 import com.bibliotecaParaiso.prestamos.form.CategoriaForm;
 import com.bibliotecaParaiso.prestamos.form.PrestamoForm;
+import com.bibliotecaParaiso.prestamos.form.PublicadorForm;
 
 @Controller
 public class PublicadorActualizarController {
 	@Autowired
-	private CategoriaService categoriaService;
+	private PublicadorService publicadorService;
 	
-	public PublicadorActualizarController(CategoriaService categoriaService) {
+	public PublicadorActualizarController(PublicadorService publicadorService) {
 		super();
-		this.categoriaService = categoriaService;
+		this.publicadorService = publicadorService;
 	}
 	
-	@RequestMapping("/categoria/actualizar")
-	public String iniciar(Model model, CategoriaForm categoriaForm){
-		model.addAttribute("categorias", this.categoriaService.select());
+	@RequestMapping("/publicador/actualizar")
+	public String iniciar(Model model, PublicadorForm publicadorForm){
+		model.addAttribute("publicadores", this.publicadorService.select());
 		
-		return "categoria_actualizar";
+		return "publicador_actualizar";
 	}
 	
-	@RequestMapping(value = "/categoria/actualizar", method=RequestMethod.POST)
-	public String devolucion(Model model, CategoriaForm categoriaForm){
+	@RequestMapping(value = "/publicador/actualizar", method=RequestMethod.POST)
+	public String devolucion(Model model, PublicadorForm publicadorForm){
 		
-		int codigo = categoriaForm.getCodigo();
-		String nombre = categoriaForm.getNombre();
+		int codigo = publicadorForm.getCodigo();
+		String nombre = publicadorForm.getNombre();
+		String lugar = publicadorForm.getLugar();
+		String correo = publicadorForm.getCorreo();
 		
-		boolean flag = categoriaService.actualizar(codigo, nombre);
+		boolean flag = publicadorService.actualizar(codigo, nombre, lugar, correo);
 		
 		if(flag){
-			model.addAttribute("mensaje", "La categoria se ha actualizado correctamente");
+			model.addAttribute("mensaje", "El publicador se ha actualizado correctamente");
 		}else{
-			model.addAttribute("mensaje", "No se pudo actualizar la categoria");
+			model.addAttribute("mensaje", "No se pudo actualizar el publicador");
 		}
 		
-		return "categoria_actualizar";
+		return "publicador_actualizar";
 	}
 }
