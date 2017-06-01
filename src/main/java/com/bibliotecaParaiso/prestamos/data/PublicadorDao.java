@@ -70,7 +70,7 @@ public class PublicadorDao {
 	public boolean actualizar(int codigo, String nombre, String lugar, String correo) {
 		try {
 			SqlParameterSource parameterSource = new MapSqlParameterSource()
-					.addValue("codigo", codigo)
+					.addValue("codPublicador", codigo)
 					.addValue("nombre", nombre)
 					.addValue("lugar", lugar)
 					.addValue("correo", correo);
@@ -89,7 +89,7 @@ public class PublicadorDao {
 		
 		try {
 			SqlParameterSource parameterSource = new MapSqlParameterSource()
-					.addValue("codigo", codigo);
+					.addValue("codPublicador", codigo);
 		
 			Map<String, Object> outParameters = simpleJdbcCallPublicadorBorrar.execute(parameterSource);
 			
