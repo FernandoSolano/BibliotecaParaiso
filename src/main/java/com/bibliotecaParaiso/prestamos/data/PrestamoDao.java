@@ -116,7 +116,7 @@ public class PrestamoDao {
 	}
 	
 	public List<Libro> getRecomendaciones(int codigoUsuario){
-		/*SqlParameterSource procedimientoLibrosRecomendados = new MapSqlParameterSource().addValue("cod_usuario", codigoUsuario);
+		SqlParameterSource procedimientoLibrosRecomendados = new MapSqlParameterSource().addValue("cod_usuario", codigoUsuario);
 		simpleJdbcCallLibrosRecomendados.execute(procedimientoLibrosRecomendados);
 		
 		List<Libro> libros = new ArrayList<>();
@@ -125,9 +125,9 @@ public class PrestamoDao {
 		.query(selectSql, new Object[] {},
 				(rs, row) -> new Libro(rs.getInt("codigo"), rs.getString("titulo")))
 		.forEach(entry -> libros.add(entry));
-		return libros;*/
+		return libros;
 		
-		List<Libro> libros = new ArrayList<>();
+	/*	List<Libro> libros = new ArrayList<>();
 
 		String selectSql = "execute LibrosRecomendados "+codigoUsuario;
 		jdbcTemplate
@@ -136,5 +136,6 @@ public class PrestamoDao {
 				.forEach(entry -> libros.add(entry));
 
 		return libros;
+	*/
 	}
 }
